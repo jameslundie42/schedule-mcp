@@ -35,9 +35,34 @@ Google Calendar  ←→  Claude (sync layer)  ←→  Notion Appointments
 | `notion_get_overdue_tasks` | Notion | Get all overdue tasks |
 | `notion_create_task` | Notion | Add a new task |
 | `notion_update_task` | Notion | Update a task |
-| `schedule_week_overview` | All | Unified week view across all three sources |
+| `schedule_week_overview` | All | Unified week view: events, appointments, tasks due, overdue tasks |
 | `schedule_task_block` | GCal + Notion | Schedule a work block for a task |
 | `schedule_find_conflicts` | GCal | Detect overlaps and tight transitions |
+
+### Notion Database Schema
+
+**Appointments database** — expected fields:
+
+| Field | Type | Notes |
+|-------|------|-------|
+| Appointment | Title | Appointment name |
+| Start | Date | Start datetime |
+| End | Date | End datetime |
+| Type | Select | Medical, Personal, Work, Other |
+| Status | Status | Scheduled, In progress, Completed |
+| Canceled | Select | Canceled, Not canceled |
+| Recurring | Select | One-Time, Limited Recurring, Recurring |
+| Notes | Rich text | Free-form notes |
+| GCal Event ID | Rich text | Linked GCal event ID (prevents duplicate sync) |
+| GCal Series ID | Rich text | Linked GCal series ID (for recurring events) |
+
+**Tasks database** — expected fields:
+
+| Field | Type | Notes |
+|-------|------|-------|
+| Task name | Title | Task name |
+| Task Status | Select | Not started, In progress, Done, Archived, Overdue |
+| Due | Date | Due date |
 
 ## Setup
 

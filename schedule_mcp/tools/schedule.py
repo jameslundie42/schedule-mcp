@@ -12,7 +12,8 @@ from pydantic import BaseModel, Field, ConfigDict
 from ..clients.gcal import get_events, find_free_slots
 from ..clients.notion import get_appointments, get_tasks, get_overdue_tasks
 
-LOCAL_TZ = os.environ.get("LOCAL_TIMEZONE", "America/Los_Angeles")
+def _local_tz() -> str:
+    return os.environ.get("LOCAL_TIMEZONE", "America/Los_Angeles")
 
 
 def register_schedule_tools(mcp: FastMCP) -> None:
@@ -54,7 +55,7 @@ def register_schedule_tools(mcp: FastMCP) -> None:
                  'tasks_due', and 'overdue_tasks' keys.
         """
         try:
-            tz = ZoneInfo(LOCAL_TZ)
+            tz = ZoneInfo(_local_tz())
 
             # Calculate week boundaries (Monday–Sunday)
             if params.date:
@@ -236,7 +237,7 @@ def register_schedule_tools(mcp: FastMCP) -> None:
             str: JSON with lists of overlaps, tight transitions, and long events.
         """
         try:
-            tz = ZoneInfo(LOCAL_TZ)
+            tz = ZoneInfo(_local_tz())
             events = get_events(params.start_date, params.end_date, params.calendar_id)
 
             # Parse events into (start_dt, end_dt, summary) tuples
