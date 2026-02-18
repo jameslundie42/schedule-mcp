@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "schedule-mcp"
+version = "0.1.0"
+description = "MCP server for schedule management via Google Calendar and Notion"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "google-api-python-client>=2.100.0",
+    "google-auth-httplib2>=0.2.0",
+    "google-auth-oauthlib>=1.1.0",
+    "notion-client>=3.0.0",
+    "python-dateutil>=2.8.2",
+    "pytz>=2024.1",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.27.0",
+    "tzdata>=2024.1",
+]
+
+[project.scripts]
+schedule-mcp = "schedule_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["schedule_mcp"]

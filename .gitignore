@@ -1,0 +1,15 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Google OAuth files (contain credentials, never commit)
+google_token.json
+google_credentials.json
+
+# uv
+.python-version
