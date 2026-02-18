@@ -16,6 +16,7 @@ Google Calendar  ←→  Claude (sync layer)  ←→  Notion Appointments
 - Notion Appointments is the source of truth for *context* (type, notes, rich metadata)
 - Notion Tasks are linked to calendar events via Notion URLs in the event description (no bidirectional sync needed)
 - A `GCal Event ID` field on each Notion Appointment prevents duplicate sync
+- A `GCal Series ID`  field for linking Notion Appointments with recurring GCal events
 
 ## Tools
 
